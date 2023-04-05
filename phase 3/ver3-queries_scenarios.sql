@@ -69,6 +69,7 @@ select  unit.unit_id as Room, occupancy_status from unit where unit_id = 5;
 
 -- 3.view any maintenance request--
 select * from maintenance_request;
+
 -- 4.send maintenance request for property_manager --
    INSERT INTO maintenance_request ( property_id, tenant_id, technician_id,unit_id, description, status)
 VALUES (1, 4, 2,4, 'Leaky faucet in ',  'open');
@@ -86,10 +87,13 @@ WHERE unit_id =  5 AND occupancy_status = 'vacant';
  UPDATE maintenance_request 
 SET  status = 'completed'
 WHERE unit_id =  5 AND  status = 'open';
+
 -- 3.view maintenance history of units for specifc unit --
 select * from  maintenance_request where unit_id = 7;
+
 -- 4. view the occupancy status of units --
 select occupancy_status from unit where unit_id = 2;
+
 -- 5.issue maintenance charges the number 3  query will do same  --
 
   /*TECHNICIAN QUERY ENDS */
