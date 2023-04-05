@@ -1,7 +1,8 @@
 use pms;
-
+/*TENANT QUERY STARTS */
 -- 1. tenatns can see payment's history
--- This query will display a list of tenant IDs, first names, last names, payment IDs, lease IDs, payment dates, and paid amounts, ordered by tenant ID and payment date.
+/* This query will display a list of tenant IDs, first names, last names, payment 
+IDs, lease IDs, payment dates, and paid amounts, ordered by tenant ID and payment date.*/
 select t.tenant_id, t.f_name as FirstName, t.l_name as LastName, p.payment_id, p.lease_id, p.payment_date, p.paid_amount
 from tenant t
 join lease l on t.tenant_id = l.tenant_id
@@ -40,14 +41,18 @@ where t.f_name = 'Jane' and t.l_name = 'Doe';
 -- 4. every tenant can check status of maintenace request 
 select description , status, phone_number as  Phonenumber
 from maintenance_request as m join tenant as t on t.tenant_id = m.tenant_id   
-where t.f_name = 'Jane' and t.l_name = 'Doe' ; 
+where t.f_name = 'Jane' and t.l_name = 'Doe' ; -- pick a tenant id to view the status
 
 
--- 5. technician can update maintenance status 
+-- 5. update maintenance status 
 update maintenance_request
-set status = '<new_status>' -- adding open, in progress, or completed
-where request_id = 0; -- depend on request_id
+set status = 'completed'
+where request_id = 1; -- select the correct id to view status
 
+
+/*TENANT QUERY ENDS*/
+
+/*PROPERTY_MANAGER  QUERY STARTS */
 
 -- 6. property manager can view the total paid amount of rent for each tenant in a lease 
 -- This query will return the tenant_id, first name, last name, lease_id, and the total paid amount of rent for each tenant in a lease. 
@@ -59,3 +64,33 @@ join payment as p on l.lease_id = p.lease_id
 group by t.tenant_id, l.lease_id, t.f_name, t.l_name
 order by t.tenant_id;
 
+-- 1. Check the occupancy status and update the property table
+select  unit.unit_id as Room, occupancy_status from unit where unit_id = 5;
+
+-- 3.view any maintenance request--
+select * from maintenance_request;
+-- 4.send maintenance request for property_manager --
+   INSERT INTO maintenance_request ( property_id, tenant_id, technician_id,unit_id, description, status)
+VALUES (1, 4, 2,4, 'Leaky faucet in ',  'open');
+  
+-- 5. change the occupancy status of units --
+UPDATE unit
+SET occupancy_status = 'occupied'
+WHERE unit_id =  5 AND occupancy_status = 'vacant';
+
+ /*PROPERTY_MANAGER  QUERY ENDS */
+ 
+ /*TECHNICIAN QUERY STARTS */ 
+ 
+ -- 1.update maintenance request after work has been finished --
+ UPDATE maintenance_request 
+SET  status = 'completed'
+WHERE unit_id =  5 AND  status = 'open';
+-- 3.view maintenance history of units for specifc unit --
+select * from  maintenance_request where unit_id = 7;
+-- 4. view the occupancy status of units --
+select occupancy_status from unit where unit_id = 2;
+-- 5.issue maintenance charges the number 3  query will do same  --
+
+  /*TECHNICIAN QUERY ENDS */
+ 

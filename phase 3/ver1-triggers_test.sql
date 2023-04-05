@@ -13,6 +13,7 @@ begin
 end;
 $$
 
+
 -- This trigger checks whether the occupancy status of the lease associated with the payment is already set to "occupied". 
 -- If it isn't, the trigger updates the occupancy status to "occupied" for that lease. 
 -- This helps ensure that the occupancy status of each lease is accurate and up-to-date.
