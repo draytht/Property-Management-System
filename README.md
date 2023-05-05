@@ -34,7 +34,7 @@ Ensure you have the following software installed on your system:
 
 - [NetBeans](https://netbeans.apache.org/)
 
-- [MySQL WorkBench](https://www.mysql.com/)
+- [MySQL WorkBench](https://www.mysql.com/) 
 
 
 ## Usage
