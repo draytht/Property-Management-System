@@ -1,6 +1,5 @@
 # Property Management System
 
-![Property Management System](assets/logo.png)
 
 A comprehensive, easy-to-use, and efficient property management system for property managers, landlords, and tenants. This project is designed to simplify property management tasks such as rent collection, maintenance requests, and lease agreements. The primary goal is to make managing rental properties a breeze for all parties involved.
 
