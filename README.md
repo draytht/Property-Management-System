@@ -32,9 +32,9 @@ These instructions will get you a copy of the project up and running on your loc
 
 Ensure you have the following software installed on your system:
 
-- [NetBeans]
+- [NetBeans](https://netbeans.apache.org/)
 
-- [MySQL WorkBench]
+- [MySQL WorkBench](https://www.mysql.com/)
 
 
 ## Usage
